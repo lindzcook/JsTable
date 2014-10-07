@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="http://listjs.com/no-cdn/list.js"></script>
+  <script type="text/javascript" src="src/tabletop.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="options.js"></script>
+
+
+</head>
+
+<body>
+<div id="users">
+
+
+</div>
+
+  </body>
+
+<script type="text/javascript">
+
+var htmldiv = users;
+
+var url = 'https://docs.google.com/spreadsheets/d/1dpGgq7nAqOHKd4lhUhIPbpm-3Gkz4szmpLrlNbxKxv8/pubhtml?gid=0&single=true';
+
+$(document).ready( function(){
+  Tabletop.init( {key: url, callback: showInfo, parseNumbers: true} )})
+
+
+function showInfo(data, tabletop){
+  console.log(data);
+
+//write items into format for list.js
+//default search by first column
+
+//add surrounding
+
+  $("#users").append('<h2>Table Working</h2> <input class="search" placeholder="Search" /><button class="sort" data-sort="university">Sort by University</button><button class="sort" data-sort="no">Sort by Billionaires</button><button class="sort" data-sort="rank">Sort by U.S. News Ranking</button><table><tbody class="list"></tbody></table>');
+
+
+ $.each(tabletop.sheets("Sheet1").all(), function(i, cat){
+
+    var htmltable = $('<tr><td class="university">' + cat.university + '</td>');
+          htmltable.append('<td class="no">' + cat.numberofbillionaires + '</td>');
+          htmltable.append('<td class="no2">' + cat.rankedbybillionaires + '</td>');
+          htmltable.append('<td class="rank">' + cat.usnewsranking + '</td></tr>');
+          htmltable.appendTo("tbody");
+  })
+
+}
+
+</script>
+
+</html>
