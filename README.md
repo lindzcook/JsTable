@@ -1,4 +1,5 @@
 JsTable
 =======
 
-Template for sortable table in JS using list.js
+Template for sortable tables in JS using list.js
+
