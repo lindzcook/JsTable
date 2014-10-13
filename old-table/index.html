@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <script src="http://listjs.com/no-cdn/list.js"></script>
-  <script type="text/javascript" src="src/tabletop.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="options.js"></script>
+
+<!-- Tabletop -->
+<script type="text/javascript" src="src/tabletop.js"></script>
+
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.3/media/css/jquery.dataTables.css">
+
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.3/media/js/jquery.dataTables.js"></script>
 
 
 </head>
@@ -31,12 +39,8 @@ $(document).ready( function(){
 function showInfo(data, tabletop){
   console.log(data);
 
-//write items into format for list.js
-//default search by first column
 
-//add surrounding
-
-  $("#users").append('<h2>Table Working</h2> <input class="search" placeholder="Search" /><button class="sort" data-sort="university">Sort by University</button><button class="sort" data-sort="no">Sort by Billionaires</button><button class="sort" data-sort="rank">Sort by U.S. News Ranking</button><table><tbody class="list"></tbody></table>');
+  $("#users").append('<h2>Table Working</h2><table id="mytable"><thead><tr><th>University</th><th>Billionaires</th><th>Billionaires Rank</th><th>U.S. News Rank</th></tr><thead><tbody></tbody></table>');
 
 
  $.each(tabletop.sheets("Sheet1").all(), function(i, cat){
@@ -49,6 +53,12 @@ function showInfo(data, tabletop){
   })
 
 }
+
+
+$('#mytable').DataTable();
+
+
+console.log("Is this running");
 
 </script>
 
